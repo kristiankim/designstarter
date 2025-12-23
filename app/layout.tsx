@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, DM_Sans } from "next/font/google";
 import "./globals.css";
+
+const dmSans = DM_Sans({ subsets: ['latin'], variable: '--font-sans' });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,7 +25,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={dmSans.variable}>
+      <head>
+        <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&f[]=general-sans@700,500,400&f[]=clash-display@700,600,500&f[]=cabinet-grotesk@700,500,400&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
