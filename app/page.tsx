@@ -12,6 +12,12 @@ export default function Page() {
     const { answers, reset, seeds, refreshSection } = useDesignStarterStore();
     const [isGenerating, setIsGenerating] = useState(false);
     const [result, setResult] = useState<GenerationResult | null>(null);
+    const [hasHydrated, setHasHydrated] = useState(false);
+
+    // Handle hydration from persisted storage
+    useEffect(() => {
+        setHasHydrated(true);
+    }, []);
 
     const handleGenerate = () => {
         setIsGenerating(true);
@@ -48,7 +54,7 @@ export default function Page() {
     return (
         <main className="min-h-screen bg-background text-foreground selection:bg-primary/10">
             <AnimatePresence mode="wait">
-                {isGenerating ? (
+                {!hasHydrated ? null : isGenerating ? (
                     <motion.div
                         key="loading"
                         initial={{ opacity: 0 }}
